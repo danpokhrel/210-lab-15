@@ -31,13 +31,32 @@ public:
 int main(){
     // Vector to hold movies
     vector<Movie> movies;
-
+    
+    // Temp variables
+    string title;
+    int year;
+    string writer;
+    string buf;
     // Read Data File
     ifstream fin("inputs.txt");
     if (!fin.good()) cout << "Input file not found.";
     while (fin.good()){
-        
+        // Get Data
+        getline(fin, title);
+        getline(fin, buf); year = stoi(buf);
+        getline(fin, writer);
+
+        // Populate variables
+        Movie tmp;
+        tmp.setTitle(title);
+        tmp.setYear(year);
+        tmp.setWriter(writer);
+        movies.push_back(tmp);
     }
+
+    // Output Movies
+    for (Movie movie : movies)
+        movie.print();
 
     return 0;
 }
